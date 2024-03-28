@@ -1,1 +1,2 @@
 # HofstaderButterflies
+This repository will include different variations of code that I am trying to use to compute Hofstader Butterflies. Parts of it will be modifications of the source code from Hofstader Tools. I will include command line tests from the original package in here as I complete them. I may try coming up with different code to compute these butterflies. I will also include notes on the methods and concepts. Eventually, I will begin trying to establish models to compute the butterflies of hyperbolic lattices.
