@@ -4,8 +4,11 @@ import matplotlib.pyplot as plt
 class Plotting_Functions:
     
     def __init__(self, outputs):
-        
-        
+        """
+            We can extract the set parameters along with the calculated
+            eigenvalues and eigenvectors to feed into the common
+            plotting functions.
+        """ 
         self.L = outputs[0]  # Lattice dimension
         self.N = self.L * self.L  # Total number of sites
         self.t = outputs[1]  # Hopping parameter
