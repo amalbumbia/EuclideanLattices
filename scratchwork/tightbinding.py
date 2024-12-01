@@ -1,10 +1,5 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import plotly.graph_objs as go
-import scipy as sp
-import plotly.express as px
-
 # Tight Binding Chain
 
 L = 100 # n. of sites
