@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 class Plotting_Functions:
     
     def __init__(self, outputs):
-        """
-            We can extract the set parameters along with the calculated
+        """ We can extract the set parameters along with the calculated
             eigenvalues and eigenvectors to feed into the common
             plotting functions.
         """ 
