@@ -4,19 +4,20 @@ from math import gcd
 
 
 class Triangular_Hamiltonian:
-    """ Triangular lattice simulation with Anderson localization and magnetic field."""
+    """ Triangular lattice simulation with Anderson localization and magnetic field """
 
     def __init__(self, length: int, t: float, W: float, phi: float, q: int):
         """
-        Initialize the Triangular_Hamiltonian class.
+          Initialize Triangular_Hamiltonian class.
 
-        Parameters:
-            length (int): Lattice size.
-            t (float): Hopping parameter.
-            W (float): Disorder strength.
-            phi (float): Magnetic flux per plaquette (in units of flux quantum).
-            q (int): Maximum denominator for phi values in Hofstadter butterfly.
+          Parameters:
+              length (int): Lattice size (L x L).
+              t (float): Hopping parameter.
+              W (float): Disorder parameter.
+              phi (float): Magnetic flux per plaquette (in units of flux quantum).
+              q (int): Maximum denominator for phi values in Hofstadter butterfly.
         """
+
         self.L = length
         self.N = self.L * self.L  # Total number of sites
         self.t = t  # Hopping parameter
@@ -26,71 +27,63 @@ class Triangular_Hamiltonian:
         self.matrix = np.zeros((self.N, self.N), dtype=complex)
         self.on_site_potential = np.zeros(self.N)
 
+    """ Defining and diagonalizing the Hamiltonian for the system """
+
     def disorder_setter(self):
-        """Set random on-site potentials for Anderson localization."""
+        # Incorporate the disorder parameter into matrix elements as an on-site disorder potential
         self.on_site_potential = self.disorder * (2 * np.random.rand(self.N) - 1)
 
-    def peierls_phase(self, x, y, delta_x, delta_y):
-        """
-        Calculate the Peierls phase.
+    def peierls_phase(self, i, j, delta_i, delta_j):
+        """Calculate Peierls phase factor for hopping between sites.
 
         Parameters:
-            delta_x (int): Change in x-coordinate between sites.
-            delta_y (int): Change in y-coordinate between sites.
-            x (int): x-coordinate of the starting site.
-            y (int): y-coordinate of the starting site.
+        i (int): x-index of starting site
+        j (int): y-index of starting site
+        delta_i (int): Change in x-coordinate between sites.
+        delta_j (int): Change in y-coordinate between sites.
 
         Returns:
-            complex: Phase factor to be applied to the hopping term.
+        complex: Phase factor for the hopping term
         """
-        # Magnetic flux per plaquette
-        phi = self.phi
-        x_i = x
-        x_f = (x + delta_x)
-        y_i = y
-        y_f = (y + delta_y)
 
-        # Average x position during hopping
-        x_avg = x_i + delta_x / 2
+        # Using the Landau gauge
+        # Average x position during hop
+        i_avg = i + delta_i / 2
 
-        # Phase accumulated during hopping
-        phase = np.exp(2j * np.pi * phi * x_avg * delta_y)
+        # Phase accumulated during hop
+        phase = np.exp(2j * np.pi * self.phi * i_avg * delta_j)
 
         return phase
 
     def construct_hamiltonian(self):
-        """
-        Construct the Hamiltonian matrix with hopping,
-        Peierls phases, and disorder.
-
-        """
+        """Construct the Hamiltonian matrix with hopping and disorder terms."""
         self.disorder_setter()
         self.matrix = np.zeros((self.N, self.N), dtype=complex)
 
-        for x in range(self.L):
-            for y in range(self.L):
-                n = x * self.L + y
+        for i in range(self.L):
+            for j in range(self.L):
+                n = i * self.L + j
 
                 # On-site potential
                 self.matrix[n, n] = self.on_site_potential[n]
 
-                # List of neighbor displacements (all six nearest neighbors)
-                neighbor_displacements = [
-                    (1, 0),    # Right (+x)
-                    (0, 1),    # Up (+y)
-                    (-1, 1),   # Up-Left (-x, +y)
-                    (-1, 0),   # Left (-x)
-                    (0, -1),   # Down (-y)
-                    (1, -1)    # Down-Right (+x, -y)
+                # List of the six nearest neighbors
+                neighbors = [
+                    (1, 0),    # Right (+i)
+                    (0, 1),    # Up (+j)
+                    (-1, 1),   # Up-Left (-i, +j)
+                    (-1, 0),   # Left (-i)
+                    (0, -1),   # Down (-j)
+                    (1, -1)    # Down-Right (+i, -j)
                 ]
 
-                for delta_x, delta_y in neighbor_displacements:
-                    x_neighbor = (x + delta_x) % self.L
-                    y_neighbor = (y + delta_y) % self.L
-                    n_neighbor = x_neighbor * self.L + y_neighbor
+                for delta_i, delta_j in neighbors:
+                    i_neighbor = (i + delta_i) % self.L
+                    j_neighbor = (j + delta_j) % self.L
+                    n_neighbor = i_neighbor * self.L + j_neighbor
 
                     # Calculate Peierls phase
-                    phase = self.peierls_phase(x, y, delta_x, delta_y)
+                    phase = self.peierls_phase(i, j, delta_i, delta_j)
 
                     # Add hopping term
                     self.matrix[n, n_neighbor] += -self.t * phase
@@ -100,7 +93,7 @@ class Triangular_Hamiltonian:
 
         # Compute eigenvalues and eigenvectors
         self.evals, self.evecs = np.linalg.eigh(self.H)
-
+        
     def plot_hofstadter_butterfly(self):
         # Plot Hofstadter butterfly.
         plt.figure(figsize=(10, 8))
