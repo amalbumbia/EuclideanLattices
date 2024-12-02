@@ -67,15 +67,19 @@ An interesting result is that if we plot the energies as a function of magnetic 
 
 # Plot Examples
 
+**Hofstadter Butterfly:**
+
+Square butterfly with no disorder:
+
+<img width="465" alt="square_no_disorder" src="https://github.com/user-attachments/assets/9b55e5c7-d2b2-49eb-8d85-370bb2e4e94d">
+
+
+Honeycomb butterfly with no disorder:
+
+<img width="465" alt="honeycomb_no_disorder" src="https://github.com/user-attachments/assets/d7ef1d1c-087b-4b6c-ac2f-0d8ce98c7784">
+
+An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure (but in the high-disorder limit, some butterfly-like structure may still persist).
 Hofsadter Butterflies
-
-Square -no disorder
-
-Square - disorder
-
-Honeycomb - no disorder
-
-Honeycomb - disorder
 
 Triangular - no disoder
 
@@ -87,7 +91,28 @@ Kagome - disorder
 
 Basic Plots
 
+## For Square Lattice:
+**Eigenvalue spectrum:**
+
+<img width="465" alt="Eig Value Spectrum" src="https://github.com/user-attachments/assets/0269271a-cde6-4fc8-81e3-6ac03dad5242">
+
+**Eigenvector:**
+
+<img width="465" alt="Arbitrary Eig" src="https://github.com/user-attachments/assets/78a9d79f-ea1c-4f89-a17d-871424ecd523">
+
+**Inverse participation ratio:**
+
+<img width="465" alt="IPR" src="https://github.com/user-attachments/assets/cfd7c401-e087-441f-a0f7-d825b4b29368">
+
+**Density of states:**
+
+<img width="465" alt="density_of_states" src="https://github.com/user-attachments/assets/6587e584-cb43-4ee6-b36e-20bd98e49c1a">
+
 Advanced Plots
+
+**Hall Conductance**
+
+**Thouless Conductance**
 
 # Credits and Acknowledgements
 
