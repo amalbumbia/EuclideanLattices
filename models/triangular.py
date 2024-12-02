@@ -116,6 +116,8 @@ class Triangular_Hamiltonian:
         # Compute eigenvalues and eigenvectors
         self.evals, self.evecs = np.linalg.eigh(self.H)
 
+        return self.evals, self.evecs
+
     def plot_hofstadter_butterfly(self, title = None, save = False):
         
         if title == None:
