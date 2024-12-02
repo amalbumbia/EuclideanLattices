@@ -78,8 +78,7 @@ Honeycomb butterfly with no disorder:
 
 <img width="465" alt="honeycomb_no_disorder" src="https://github.com/user-attachments/assets/d7ef1d1c-087b-4b6c-ac2f-0d8ce98c7784">
 
-An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure (but in the high-disorder limit, some butterfly-like structure may still persist).
-Hofsadter Butterflies
+An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure.
 
 Triangular - no disoder
 
