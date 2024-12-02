@@ -2,9 +2,9 @@
 
 This repository is a work in progress. My aim is to simulate Anderson localization and the quantum hall effect on a few common euclidean lattices (square, honeycomb, triangular, kagome). A primary result is the Hofstadter butterfly for each of these lattice types given different input parameters such as the presence of an on-site disorder potential. 
  
-As it stands, the Thouless conductance and chern number additions are still in progress. The kagome lattice model is nearly complete. 
+As it stands, the Thouless conductance and Chern number additions are still in progress. 
 
-There is an odd quirk in the butterflies due to an additional periodic smattering of points overlayed on top of the correct butterfly structure for each model. I'm trying to figure out exactly why that's happening so I can fix it. 
+There is an odd quirk in the butterflies due to an additional periodic smattering of points overlayed on top of the correct butterfly structure for each model. I believe it is due to the lattice size parameter being inconsistent with the magnetic flux denominator. The Kagome lattice model seems to produce a correct butterfly since I removed the problematic parameter from it. I will correct the rest in due time.
 
 # Getting Started
 
@@ -78,8 +78,7 @@ Honeycomb butterfly with no disorder:
 
 <img width="465" alt="honeycomb_no_disorder" src="https://github.com/user-attachments/assets/d7ef1d1c-087b-4b6c-ac2f-0d8ce98c7784">
 
-An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure (but in the high-disorder limit, some butterfly-like structure may still persist).
-Hofsadter Butterflies
+An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure.
 
 Triangular - no disoder
 
@@ -89,9 +88,9 @@ Kagome -  no disorder
 
 Kagome - disorder
 
-Basic Plots
+**Basic Plots**
 
-## For Square Lattice:
+For Square Lattice:
 **Eigenvalue spectrum:**
 
 <img width="465" alt="Eig Value Spectrum" src="https://github.com/user-attachments/assets/0269271a-cde6-4fc8-81e3-6ac03dad5242">
