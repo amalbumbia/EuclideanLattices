@@ -39,11 +39,9 @@ When we're simulating specific lattice types, it's actually easier to construct 
 ## Anderson Localization
 The key idea behind Anderson Localization is that certain materials can undergo a phase transition from conductor to insulator if the system passes a disorder threshold. Thus, in systems of sufficiently large disorder (such as defected semiconductors) the electronic wavefunction associated with a now spatially localized state becomes localized. This localization influences the aforementioned phase transition. \textbf{In other words, spatial localization of the electronic wavefunction causes a change in the conductance of a highly disordered material.}
 
-The Anderson tight-binding model allows us to describe this phenomenon more effectively. Here, electrons can tunnel between neighboring lattice sites until high disorder in the lattice causes quantum amplitudes associated with the tunneling paths to cancel amongst each other. A localized wavefunction follows. Equivalently, we can say that the incoming wave is scattered by potentials arising from the disorder, and the scattered wavelets destructively interfere as they propel forward at high disorder. This causes an exponential decay of the wavefunction. In this way, \textbf{Anderson localization} can be thought of as an interference phenomenon. 
+The Anderson tight-binding model allows us to describe this phenomenon. Here, electrons can tunnel between neighboring lattice sites until high disorder in the lattice causes quantum amplitudes associated with the tunneling paths to cancel amongst each other. A localized wavefunction follows. Equivalently, we can say that the incoming wave is scattered by potentials arising from the disorder, and the scattered wavelets destructively interfere as they propel forward at high disorder. This causes an exponential decay of the wavefunction. In this way, \textbf{Anderson localization} can be thought of as an interference phenomenon. 
 
-Experimentally, electron localization has mostly been observed in a 1D case. 
-
-The Anderson Hamiltonian can help us describe the localization in more technical terms. We write it as such
+The Anderson Hamiltonian:
 
 $$H = W \sum_n (\epsilon_n c_n^\dagger c_n) + t \sum_{<n,m>} (c_n^\dagger c_m + h.c)$$
 
@@ -69,8 +67,34 @@ An interesting result is that if we plot the energies as a function of magnetic 
 
 # Plot Examples
 
+Hofsadter Butterflies
+
+Square -no disorder
+
+Square - disorder
+
+Honeycomb - no disorder
+
+Honeycomb - disorder
+
+Triangular - no disoder
+
+Triangular - disorder
+
+Kagome -  no disorder
+
+Kagome - disorder
+
+Basic Plots
+
+Advanced Plots
+
 # Credits and Acknowledgements
 
-Special thanks to Dr. Matteo Ippoliti for being my advisor and encouraging me to put everything on Github! A prior version of this repository is availible here as my project for PHY 329 (Computational Physics) at UT Austin ([class website](https://www.wgilpin.com/cphy/)). Parts of the code and README are the same because I wrote both of them. Consider this repository an extension of my old work. I'd like to acknowledge my friends Rida Siddiqi and Maddox Wroblewski for their assistance and input towards the initial repository, as well as my friends Bishoy Kousa and Aravind Karthigeyan for their help and advice with troubleshooting.
+Special thanks to Dr. Matteo Ippoliti for being my advisor and encouraging me to put everything on Github!
+
+A prior version of this repository is available here as my project for PHY 329 (Computational Physics) at UT Austin ([class website](https://www.wgilpin.com/cphy/)). There are parts of the code and README that are the same because I wrote both of them. Consider this repository an extension of my old work. 
+
+I'd like to acknowledge my friends Rida Siddiqi and Maddox (Max) Wroblewski for their assistance and input towards the old repository, as well as my friends Bishoy Kousa and Aravind Karthigeyan for their help and advice with troubleshooting. Max helped me learn how to use Github and also helped with organizing and saving plots.
 
 I will compile a bibliography of all the sources I learned from and place it here when complete.

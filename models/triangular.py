@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from math import gcd
-
+import os
 
 class Triangular_Hamiltonian:
     """ Triangular lattice simulation with Anderson localization and magnetic field """
 
-    def __init__(self, length: int, t: float, W: float, phi: float, q: int):
+    def __init__(self, length: int, t: float, W: float, phi: float, q: int, save = False):
         """
           Initialize Triangular_Hamiltonian class.
 
@@ -26,6 +26,28 @@ class Triangular_Hamiltonian:
         self.max_q = q  # Maximum denominator for phi values
         self.matrix = np.zeros((self.N, self.N), dtype=complex)
         self.on_site_potential = np.zeros(self.N)
+        self.lattice_type = 'Triangular'
+        
+        self.save = save
+
+        if self.save == True:
+
+            if self.disorder == 0:
+                self.path = 'plots\\' + self.lattice_type + '\\No_Disorder' + '\\L' + str(self.L) + '_t' + str(self.t) + '_phi' + str(self.phi) + '_q' + str(self.max_q)
+            else:
+                self.path = 'plots\\' + self.lattice_type + '\\Disorder' + '\\L' + str(self.L) + '_t' + str(self.t) + '_phi' + str(self.phi) + '_q' + str(self.max_q) + '_dis' + str(self.disorder)
+            
+            if not os.path.exists(self.path):
+                os.makedirs(self.path)
+    
+    
+    def saving(self, title, save = False):
+        
+        if self.save == True and save == True and title != None:
+            plt.savefig(os.path.join(self.path, title+'.png'))
+            plt.show()
+        else:
+            plt.show()
 
     """ Defining and diagonalizing the Hamiltonian for the system """
 
@@ -93,31 +115,34 @@ class Triangular_Hamiltonian:
 
         # Compute eigenvalues and eigenvectors
         self.evals, self.evecs = np.linalg.eigh(self.H)
+
+    def plot_hofstadter_butterfly(self, title = None, save = False):
         
-    def plot_hofstadter_butterfly(self):
-        # Plot Hofstadter butterfly.
+        if title == None:
+            title = 'Hofstadter Butterfly for $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
+            path = 'Hofstadter Butterfly'
+        
+        # Plot the Hofstadter butterfly
         plt.figure(figsize=(10, 8))
         phis = []
         energies = []
 
-        original_phi = self.phi  # Save original phi value
-
         for q in range(1, self.max_q + 1):
-            for p in range(q):
+            for p in range(q+1):
                 if gcd(p, q) == 1:
                     self.phi = p / q
-                    self.construct_hamiltonian()
+                    self.construct_hamiltonian() # Reconstruct hamiltonian for each allowed phi
                     phis.extend([self.phi] * self.N)
                     energies.extend(self.evals.tolist())
 
-        self.phi = original_phi  # Restore original phi value
 
         plt.scatter(phis, energies, s=0.1, color='black')
         plt.xlabel('Flux per Plaquette $\\phi$')
         plt.ylabel('Energy $E$')
-        plt.title(f'Hofstadter Butterfly for $\\phi = p / {self.max_q}$ and $W = {self.disorder}$')
+        plt.title(title)
         plt.grid(True)
-        plt.show()
+        self.saving(path, save)
+
     def prepare_outputs(self):
         """
         Package all relevant parameters and diagonalization 
@@ -129,6 +154,6 @@ class Triangular_Hamiltonian:
         self.evals, self.evecs = self.construct_hamiltonian()
         
         outputs = (self.L, self.t, self.disorder, self.phi, 
-                   self.max_q, self.evals, self.evecs)
+                   self.max_q, self.evals, self.evecs, self.lattice_type)
         
         return outputs
