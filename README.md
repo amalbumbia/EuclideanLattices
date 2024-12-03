@@ -127,6 +127,8 @@ Advanced Plots
 
 **Hall Conductance**
 
+<img width="465" alt="hall_cond" src="https://github.com/amalbumbia/EuclideanLattices/blob/76a32cd78c10866e71aa011e4f79239c036c0bdb/plots/Square/No_Disorder/L20_t1_phi0.8_q50/Hall%20Conductance%20vs%20Energy%20for%20Square%20Lattice.png">
+
 **Thouless Conductance**
 
 # Credits and Acknowledgements
