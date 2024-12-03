@@ -94,9 +94,8 @@ Triangular -
 Honeycomb - 
 Kagome -  
 
-**Basic Plots**
+**Basic Plots** - Square Lattice Example
 
-For Square Lattice:
 **Eigenvalue spectrum:**
 
 <img width="465" alt="Eig Value Spectrum" src="https://github.com/user-attachments/assets/0269271a-cde6-4fc8-81e3-6ac03dad5242">
