@@ -89,10 +89,21 @@ Triangular butterfly with no disorder:
 
 An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure.
 
-Square - 
-Triangular - 
-Honeycomb - 
-Kagome -  
+Square butterfly with disorder:
+
+<img width="465" alt="square_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Square/Disorder/L10_t1_phi0.0_q50_dis0.5/Hofstadter%20Butterfly.png">
+
+Triangular butterfly with disorder: 
+
+<img width="465" alt="triangular_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Triangular/Disorder/L10_t1_phi0.4_q50_dis0.7/Hofstadter%20Butterfly.png">
+
+Honeycomb butterfly with disorder: 
+
+<img width="465" alt="honeycomb_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Honeycomb/Disorder/L10_t1_phi0.5_q50_dis0.5/Hofstadter%20Butterfly.png">
+
+Kagome butterfly with disorder: 
+
+<img width="465" alt="kagome_disorder" src="">
 
 **Basic Plots** - Square Lattice Example
 
