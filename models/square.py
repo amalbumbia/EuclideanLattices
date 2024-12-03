@@ -34,15 +34,21 @@ class Square_Hamiltonian:
         self.phi_y = 0.0  # Flux through y direction
         self.save = save
 
-        if self.save == True:
-    
+        if self.save:
+            # Base directory for saving plots
+            base_dir = os.path.join('plots', self.lattice_type)
+            
+            # Determine subdirectory based on disorder state
             if self.disorder == 0:
-                self.path = 'plots\\' + self.lattice_type + '\\No_Disorder' + '\\L' + str(self.L) + '_t' + str(self.t) + '_phi' + str(self.phi) + '_q' + str(self.max_q)
+                sub_dir = os.path.join(base_dir, 'No_Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}')
             else:
-                self.path = 'plots\\' + self.lattice_type + '\\Disorder' + '\\L' + str(self.L) + '_t' + str(self.t) + '_phi' + str(self.phi) + '_q' + str(self.max_q) + '_dis' + str(self.disorder)
-            if not os.path.exists(self.path):
-                os.makedirs(self.path)
-        
+                sub_dir = os.path.join(base_dir, 'Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}_dis{self.disorder}')
+            
+            # Set the path and ensure the directory exists
+            self.path = sub_dir
+            
+            # Create the directory if it doesn't already exist
+            os.makedirs(self.path, exist_ok=True)        
     
     
     def saving(self, title, save = False):
