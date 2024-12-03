@@ -142,7 +142,7 @@ class Plotting_Functions:
             num_points (int): Number of points in the energy grid.
         """
         if title == None:
-            title = 'Hall Conductance vs. Energy for '+ self.lattice_type + ' Lattice'
+            title = 'Hall Conductance vs Energy for '+ self.lattice_type + ' Lattice'
 
         h = 6.62607015e-34  # Planck's constant (Js)
         e = 1.602176634e-19  # Elementary charge (C)
@@ -166,6 +166,5 @@ class Plotting_Functions:
         plt.title(title)
         plt.legend([legend])
         plt.grid(True)
-        plt.show()
 
         self.saving(title, save)
