@@ -79,11 +79,11 @@ Honeycomb butterfly with no disorder:
 
 <img width="465" alt="honeycomb_no_disorder" src="https://github.com/user-attachments/assets/d7ef1d1c-087b-4b6c-ac2f-0d8ce98c7784">
 
-Triangular butterfly with no disorder:
+Kagome butterfly with no disorder:
 
 <img width="465" alt="triangular_no_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Kagome/No_Disorder/L50_t1_phi0.05_q50/Hofstadter%20Butterfly.png">
 
-Kagome butterfly with no disorder:
+Triangular butterfly with no disorder:
 
 <img width="465" alt="kagome_no_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Triangular/No_Disorder/L10_t1_phi0.0_q50/Hofstadter%20Butterfly.png">
 
