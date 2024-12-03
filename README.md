@@ -37,9 +37,10 @@ where $\omega_0$ is the on-site energy. The first sum runs over all lattice site
 When we're simulating specific lattice types, it's actually easier to construct a Hamiltonian in terms of a matrix populated by considering the lattice geometry. By this, we mean populating an $N$ x $N$ matrix based on the nearest neighbor hopping as it would occur on a particular lattice.
 
 ## Anderson Localization
-The key idea behind Anderson Localization is that certain materials can undergo a phase transition from conductor to insulator if the system passes a disorder threshold. Thus, in systems of sufficiently large disorder (such as defected semiconductors) the electronic wavefunction associated with a now spatially localized state becomes localized. It will decay exponentially as $$\psi(x) {~} e^{-x/\eta}$$. This localization influences the aforementioned phase transition. \textbf{In other words, spatial localization of the electronic wavefunction causes a change in the conductance of a highly disordered material.}
+What happens when disorder is introduced to a lattice system?
+The key idea behind Anderson Localization is that certain materials can undergo a phase transition from conductor to insulator if the system passes a disorder threshold. In systems of sufficiently large disorder (such as defected semiconductors) electronic wavefunctions become localized. This localization influences the aforementioned phase transition. In other words, spatial localization of the electronic wavefunction causes a change in the conductance of a highly disordered material.
 
-The Anderson tight-binding model allows us to describe this phenomenon. Here, electrons can tunnel between neighboring lattice sites until high disorder in the lattice causes quantum amplitudes associated with the tunneling paths to cancel amongst each other. A localized wavefunction follows. Equivalently, we can say that the incoming wave is scattered by potentials arising from the disorder, and the scattered wavelets destructively interfere as they propel forward at high disorder. This causes an exponential decay of the wavefunction. In this way, Anderson localization can be thought of as an interference phenomenon. 
+The Anderson tight-binding model allows us to describe this phenomenon. Here, electrons can tunnel between neighboring lattice sites until high disorder in the lattice causes quantum amplitudes associated with the tunneling paths to cancel amongst each other. A localized wavefunction follows. Equivalently, we can say that the incoming wave is scattered by potentials arising from the disorder, and the scattered wavelets destructively interfere. This causes an exponential decay of the wavefunction $$\psi(x) {~} e^{-x/\eta}$$. In this way, Anderson localization can be thought of as an interference phenomenon. 
 
 The Anderson Hamiltonian:
 
@@ -78,15 +79,20 @@ Honeycomb butterfly with no disorder:
 
 <img width="465" alt="honeycomb_no_disorder" src="https://github.com/user-attachments/assets/d7ef1d1c-087b-4b6c-ac2f-0d8ce98c7784">
 
+Triangular butterfly with no disorder:
+
+<img width="465" alt="triangular_no_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Kagome/No_Disorder/L50_t1_phi0.05_q50/Hofstadter%20Butterfly.png">
+
+Kagome butterfly with no disorder:
+
+<img width="465" alt="kagome_no_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Triangular/No_Disorder/L10_t1_phi0.0_q50/Hofstadter%20Butterfly.png">
+
 An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure.
 
-Triangular - no disoder
-
-Triangular - disorder
-
-Kagome -  no disorder
-
-Kagome - disorder
+Square - 
+Triangular - 
+Honeycomb - 
+Kagome -  
 
 **Basic Plots**
 
