@@ -134,31 +134,38 @@ class Plotting_Functions:
         self.saving(title, save)
 
 
-    def compute_hall_conductance(self, num_points=100):
+    def plot_hall_conductance(self, num_points=100, title = None, save = False):
         """
-        Compute and plot the Hall conductance as a function of Fermi energy.
+        Compute and plot the Hall conductance.
 
         Parameters:
             num_points (int): Number of points in the energy grid.
         """
+        if title == None:
+            title = 'Hall Conductance vs. Energy for '+ self.lattice_type + ' Lattice'
+
         h = 6.62607015e-34  # Planck's constant (Js)
         e = 1.602176634e-19  # Elementary charge (C)
 
         energy_min = np.min(self.evals) - 1
         energy_max = np.max(self.evals) + 1
-        energies = np.linspace(energy_min, energy_max, num_points)
+        energies = np.linspace(energy_min, energy_max, num_points) # Artificial linspace 
         hall_conductances = np.zeros_like(energies)
 
         # Cumulative density of states
         cumulative_dos = np.array([np.sum(self.evals < E) for E in energies]) / self.N
 
-        # Hall conductance quantization (in units of e^2/h)
+        # Hall conductance (in units of e^2/h)
         hall_conductances = cumulative_dos * (e ** 2 / h)
 
+        legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
         plt.figure(figsize=(8, 6))
         plt.plot(energies, hall_conductances)
-        plt.xlabel('Fermi Energy $E_F$')
+        plt.xlabel('Energy $E$')
         plt.ylabel('Hall Conductance $\sigma_{xy}$ (S)')
-        plt.title('Hall Conductance vs. Energy')
+        plt.title(title)
+        plt.legend([legend])
         plt.grid(True)
         plt.show()
+
+        self.saving(title, save)
