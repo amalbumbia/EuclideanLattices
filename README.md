@@ -103,7 +103,7 @@ Honeycomb butterfly with disorder:
 
 Kagome butterfly with disorder: 
 
-<img width="465" alt="kagome_disorder" src="">
+<img width="465" alt="kagome_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/282ef5cea190e7a1fa79022a0b8dedfba70642f5/plots/Kagome/Disorder/L50_t1_phi0.0_q50_dis0.6/Hofstadter%20Butterfly.png">
 
 **Basic Plots** - Square Lattice Example
 
