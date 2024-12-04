@@ -127,6 +127,8 @@ Advanced Plots
 
 **Hall Conductance**
 
+<img width="465" alt="hall_cond" src="https://github.com/amalbumbia/EuclideanLattices/blob/76a32cd78c10866e71aa011e4f79239c036c0bdb/plots/Square/No_Disorder/L20_t1_phi0.8_q50/Hall%20Conductance%20vs%20Energy%20for%20Square%20Lattice.png">
+
 **Thouless Conductance**
 
 # Credits and Acknowledgements
@@ -134,5 +136,7 @@ Advanced Plots
 Special thanks to Dr. Matteo Ippoliti for being my advisor and encouraging me to put everything on Github!
 
 A prior version of this repository is available here as my project for PHY 329 (Computational Physics) at UT Austin ([class website](https://www.wgilpin.com/cphy/)). Parts of the code and README are the same because I wrote both of them. Consider this repository an extension of my old work. I'd like to acknowledge my friends Rida Siddiqi and Maddox (Max) Wroblewski for their assistance and input towards the initial repository, as well as my friends Bishoy Kousa and Aravind Karthigeyan for their help and advice with troubleshooting. Max helped me learn how to use Github and also helped with some organization and saving plots into proper directories. 
+
+Also, I thank Dr. Edoardo Baldini for letting me talk through my ideas during office hours and suggesting I account for time-reversal symmetry. 
 
 I will compile a bibliography of all the sources I learned from and place it here when complete.
