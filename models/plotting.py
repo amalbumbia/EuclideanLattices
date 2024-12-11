@@ -144,6 +144,7 @@ class Plotting_Functions:
         if title == None:
             title = 'Hall Conductance vs Energy for '+ self.lattice_type + ' Lattice'
 
+        # Exploiting density of states N = \int g(E) ; then let hall conductance = N e^2/h
         h = 6.62607015e-34  # Planck's constant (Js)
         e = 1.602176634e-19  # Elementary charge (C)
 
