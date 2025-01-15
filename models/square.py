@@ -6,7 +6,7 @@ import os
 class Square_Hamiltonian:
     """ Square lattice simulation with Anderson localization and a magnetic field"""
 
-    def __init__(self, length: int, t: float, W: float, phi: float, q: int, save = False):
+    def __init__(self, t: float, W: float, phi: float, q: int, save = False):
         """
           Initialize Square_Hamiltonian class.
 
