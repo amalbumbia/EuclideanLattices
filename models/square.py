@@ -18,7 +18,7 @@ class Square_Hamiltonian:
               q (int): Maximum denominator for phi values in Hofstadter butterfly.
           """
 
-        self.L = length  # Lattice dimension
+        self.L = q  # Lattice dimension
         self.N = self.L * self.L  # Total number of sites
         self.t = t  # Hopping parameter
         self.disorder = W  # Disorder strength
