@@ -17,7 +17,7 @@ class Honeycomb_Hamiltonian:
             phi (float): Magnetic flux per plaquette (in units of flux quantum).
             q (int): Maximum denominator for phi values in Hofstadter butterfly.
         """
-        self.L = q  # Lattice dimension
+        self.L = length  # Lattice dimension
         self.N = 2 * self.L * self.L  # Total number of sites (factor of 2 for two sublattices)
         self.t = t  # Hopping parameter
         self.disorder = W  # Disorder strength
