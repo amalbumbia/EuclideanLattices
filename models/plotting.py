@@ -6,16 +6,13 @@ class Plotting_Functions:
     
     def __init__(self, outputs, save = False):
         
-        
-        self.L = outputs[0]  # Lattice dimension
-        self.N = self.L * self.L  # Total number of sites
-        self.t = outputs[1]  # Hopping parameter
-        self.disorder = outputs[2]  # Disorder strength
-        self.phi = outputs[3]  # Magnetic flux per plaquette
-        self.max_q = outputs[4]  # Maximum denominator for phi values
-        self.evals = outputs[5]
-        self.evecs = outputs[6]
-        self.lattice_type = outputs[7]
+        self.t = outputs[0]  # Hopping parameter
+        self.disorder = outputs[1]  # Disorder strength
+        self.phi = outputs[2]  # Magnetic flux per plaquette
+        self.max_q = outputs[3]  # Maximum denominator for phi values
+        self.evals = outputs[4]
+        self.evecs = outputs[5]
+        self.lattice_type = outputs[6]
         self.save = save
 
 
@@ -25,9 +22,9 @@ class Plotting_Functions:
             
             # Determine subdirectory based on disorder state
             if self.disorder == 0:
-                sub_dir = os.path.join(base_dir, 'No_Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}')
+                sub_dir = os.path.join(base_dir, 'No_Disorder', f't{self.t}_phi{self.phi}_q{self.max_q}')
             else:
-                sub_dir = os.path.join(base_dir, 'Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}_dis{self.disorder}')
+                sub_dir = os.path.join(base_dir, 'Disorder', f't{self.t}_phi{self.phi}_q{self.max_q}_dis{self.disorder}')
             
             # Set the path and ensure the directory exists
             self.path = sub_dir
@@ -52,7 +49,7 @@ class Plotting_Functions:
             title = 'Eigenvalues of the ' + self.lattice_type + ' Lattice Hamiltonian'
 
         # Plot eigenvalues of hamiltonian matrix
-        legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
+        legend = f't={self.t}, W={self.disorder}, $\phi$={self.phi}'
         plt.plot(self.evals, '.')
         plt.ylabel(r'Eigenvalues $E_i$')
         plt.xlabel('Index $i$')
@@ -78,7 +75,7 @@ class Plotting_Functions:
         ax[0].set_ylabel(r'$ |\psi(x)|^2$')
         ax[1].set_ylabel(r'$ |\psi(x)|^2$')
 
-        legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
+        legend = f't={self.t}, W={self.disorder}, $\phi$={self.phi}'
         plt.title('Arbitrary Eigenvector')
         plt.legend([legend])
         plt.grid(True)
@@ -93,7 +90,7 @@ class Plotting_Functions:
         # Plot Participation Ratio
         self.PR = 1./np.sum(np.abs(self.evecs)**4, axis=0) # 'evecs' is a matrix of $\psi_i(x)$ amplitudes, 1st axis is x. This does the sum over x.
 
-        legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
+        legend = f't={self.t}, W={self.disorder}, $\phi$={self.phi}'
         plt.plot(self.evals, self.PR, 'o')
         plt.xlabel('Energy $E$')
         plt.ylabel('Inverse Participation Ratio (IPR)')
@@ -122,7 +119,7 @@ class Plotting_Functions:
         for E_n in self.evals:
             dos += np.exp(-((E_vals - E_n) ** 2) / (2 * sigma ** 2)) / (np.sqrt(2 * np.pi) * sigma) # Using gaussian broadening
 
-        legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
+        legend = f't={self.t}, W={self.disorder}, $\phi$={self.phi}'
         plt.figure(figsize=(8, 6))
         plt.plot(E_vals, dos)
         plt.xlabel('Energy $E$')
@@ -159,7 +156,7 @@ class Plotting_Functions:
         # Hall conductance (in units of e^2/h)
         hall_conductances = cumulative_dos * (e ** 2 / h)
 
-        legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
+        legend = f't={self.t}, W={self.disorder}, $\phi$={self.phi}'
         plt.figure(figsize=(8, 6))
         plt.plot(energies, hall_conductances)
         plt.xlabel('Energy $E$')
