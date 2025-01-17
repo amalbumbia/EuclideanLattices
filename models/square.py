@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 from math import gcd
 import os
 
+
 class Square_Hamiltonian:
     """ Square lattice simulation with Anderson localization and a magnetic field"""
     def __init__(self, t: float, W: float, phi: float, max_q: int, save=False):
         """
-        Initialize parameters for the Hofstadter simulation (without specifying L).
+        Initialize Square Lattice.
         
         Parameters:
             t (float): Hopping parameter
@@ -51,7 +52,7 @@ class Square_Hamiltonian:
        
         if self.save and save and title is not None:
             plt.savefig(os.path.join(self.path, title + ".png"))
-            plt.close()
+            plt.show()
         else:
             plt.show()
 
@@ -129,11 +130,13 @@ class Square_Hamiltonian:
         # Compute eigenvalues and eigenvectors
         evals, evecs = np.linalg.eigh(H)
         return evals, evecs
+    
+    """Defining plotting functions dependent on matrix construction"""
 
     def plot_hofstadter_butterfly(self, title=None, save=False):
-     
+        # Plotting the Hoftsadter butterfly
         if title is None:
-            title = rf"Hofstadter Butterfly, q={self.max_q}, W={self.disorder}"
+            title = rf'Hofstadter Butterfly for $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
             path = "Hofstadter_Butterfly"
 
         phis = []

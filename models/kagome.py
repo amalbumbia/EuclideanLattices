@@ -166,8 +166,10 @@ class Kagome_Hamiltonian:
         # Compute eigenvalues and eigenvectors
         return self.evals, self.evecs
 
+    """Defining plotting functions dependent on matrix construction"""
+    
     def plot_hofstadter_butterfly(self, title = None, save = False):
-
+        # Plotting the Hofstadter butterfly
         if title == None:
             title = 'Hofstadter Butterfly for $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
             path = 'Hofstadter Butterfly'

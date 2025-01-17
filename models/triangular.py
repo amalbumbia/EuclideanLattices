@@ -6,37 +6,34 @@ import os
 class Triangular_Hamiltonian:
     """ Triangular lattice simulation with Anderson localization and magnetic field """
 
-    def __init__(self, length: int, t: float, W: float, phi: float, q: int, save = False):
+    def __init__(self, t: float, W: float, phi: float, max_q: int, save = False):
         """
-          Initialize Triangular_Hamiltonian class.
-
-          Parameters:
-              length (int): Lattice size (L x L).
-              t (float): Hopping parameter.
-              W (float): Disorder parameter.
-              phi (float): Magnetic flux per plaquette (in units of flux quantum).
-              q (int): Maximum denominator for phi values in Hofstadter butterfly.
+        Initialize Triangular lattice. 
+        
+        Parameters:
+            t (float): Hopping parameter
+            W (float): Disorder strength
+            phi (float): Magnetic flux per plaquette (in units of flux quantum).
+            q (int): Maximum denominator for phi values in Hofstadter butterfly.
+            save (bool): If True, save plots to disk
         """
-
-        self.L = length
-        self.N = self.L * self.L  # Total number of sites
         self.t = t  # Hopping parameter
         self.disorder = W  # Disorder strength
         self.phi = phi  # Magnetic flux per plaquette
-        self.max_q = q  # Maximum denominator for phi values
-        self.matrix = np.zeros((self.N, self.N), dtype=complex)
-        self.on_site_potential = np.zeros(self.N)
-        self.lattice_type = 'Triangular'
+        self.max_q = max_q  # Maximum denominator for phi values
         self.save = save
+
+        # Directory handling if saving
+        self.lattice_type = 'Triangular'
         if self.save:
             # Base directory for saving plots
             base_dir = os.path.join('plots', self.lattice_type)
             
             # Determine subdirectory based on disorder state
             if self.disorder == 0:
-                sub_dir = os.path.join(base_dir, 'No_Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}')
+                sub_dir = os.path.join(base_dir, 'No_Disorder', f't{self.t}_phi{self.phi}_q{self.max_q}')
             else:
-                sub_dir = os.path.join(base_dir, 'Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}_dis{self.disorder}')
+                sub_dir = os.path.join(base_dir, 'Disorder', f't{self.t}_phi{self.phi}_q{self.max_q}_dis{self.disorder}')
             
             # Set the path and ensure the directory exists
             self.path = sub_dir
@@ -55,9 +52,9 @@ class Triangular_Hamiltonian:
 
     """ Defining and diagonalizing the Hamiltonian for the system """
 
-    def disorder_setter(self):
+    def disorder_setter(self, N):
         # Incorporate the disorder parameter into matrix elements as an on-site disorder potential
-        self.on_site_potential = self.disorder * (2 * np.random.rand(self.N) - 1)
+        return self.disorder * (2 * np.random.rand(N) - 1)
 
     def peierls_phase(self, i, j, delta_i, delta_j):
         """Calculate Peierls phase factor for hopping between sites.
@@ -81,17 +78,29 @@ class Triangular_Hamiltonian:
 
         return phase
 
-    def construct_hamiltonian(self):
-        """Construct the Hamiltonian matrix with hopping and disorder terms."""
-        self.disorder_setter()
-        self.matrix = np.zeros((self.N, self.N), dtype=complex)
+    def construct_hamiltonian(self, p, q):
+        """
+        Construct the Hamiltonian matrix with hopping,
+        Peierls phases, and disorder.
 
-        for i in range(self.L):
-            for j in range(self.L):
-                n = i * self.L + j
+        Returns:
+            evals (1D np.array): Eigenvalues of the Hamiltonian
+            evecs (2D np.array): Corresponding eigenvectors
+        """
+        L = q # Set the matrix dimension equal to q (denominator of phi)
+        N = L * L # Dimension of adjacency matrix
+        self.phi = p / q  # Flux per plaquette
+
+        # Initialize Hamiltonian
+        on_site_disorder = self.disorder_setter(N)
+        matrix = np.zeros((N, N), dtype=complex)
+
+        for i in range(L):
+            for j in range(L):
+                n = i * L + j
 
                 # On-site potential
-                self.matrix[n, n] = self.on_site_potential[n]
+                matrix[n, n] = on_site_disorder[n]
 
                 # List of the six nearest neighbors
                 neighbors = [
@@ -104,50 +113,50 @@ class Triangular_Hamiltonian:
                 ]
 
                 for delta_i, delta_j in neighbors:
-                    i_neighbor = (i + delta_i) % self.L
-                    j_neighbor = (j + delta_j) % self.L
-                    n_neighbor = i_neighbor * self.L + j_neighbor
+                    i_neighbor = (i + delta_i) % L
+                    j_neighbor = (j + delta_j) % L
+                    n_neighbor = i_neighbor * L + j_neighbor
 
                     # Calculate Peierls phase
                     phase = self.peierls_phase(i, j, delta_i, delta_j)
 
                     # Add hopping term
-                    self.matrix[n, n_neighbor] += -self.t * phase
+                    matrix[n, n_neighbor] += -self.t * phase
 
         # Ensure Hamiltonian is Hermitian
-        self.H = (self.matrix + self.matrix.conj().T) / 2
+        H = (matrix + matrix.conj().T) / 2
 
         # Compute eigenvalues and eigenvectors
-        self.evals, self.evecs = np.linalg.eigh(self.H)
+        self.evals, self.evecs = np.linalg.eigh(H)
 
         return self.evals, self.evecs
 
-    def plot_hofstadter_butterfly(self, title = None, save = False):
-        
-        if title == None:
-            title = 'Hofstadter Butterfly for $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
-            path = 'Hofstadter Butterfly'
-        
-        # Plot the Hofstadter butterfly
-        plt.figure(figsize=(10, 8))
+    """Defining plotting functions dependent on matrix construction"""
+
+    def plot_hofstadter_butterfly(self, title=None, save=False):
+        # Plotting the Hofstadter butterfly
+        if title is None:
+            title = rf'Hofstadter Butterfly for $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
+            path = "Hofstadter_Butterfly"
+
         phis = []
         energies = []
 
         for q in range(1, self.max_q + 1):
-            for p in range(q+1):
+            for p in range(q + 1):
+                
                 if gcd(p, q) == 1:
-                    self.phi = p / q
-                    self.construct_hamiltonian() # Reconstruct hamiltonian for each allowed phi
-                    phis.extend([self.phi] * self.N)
-                    energies.extend(self.evals.tolist())
+                    evals, _ = self.construct_hamiltonian(p, q) # Reconstruct hamiltonian for each allowed phi
+                    
+                    phis.extend([p / q] * len(evals))
+                    energies.extend(evals.tolist())
 
-
+        plt.figure(figsize=(10, 8))
         plt.scatter(phis, energies, s=0.1, color='black')
-        plt.xlabel('Flux per Plaquette $\\phi$')
-        plt.ylabel('Energy $E$')
+        plt.xlabel(r'Flux per plaquette $\phi = \frac{p}{q}$')
+        plt.ylabel(r'Energy $E$')
         plt.title(title)
         plt.grid(True)
-        self.saving(path, save)
 
     def prepare_outputs(self):
         """
@@ -159,7 +168,7 @@ class Triangular_Hamiltonian:
         """
         self.evals, self.evecs = self.construct_hamiltonian()
         
-        outputs = (self.L, self.t, self.disorder, self.phi, 
+        outputs = (self.t, self.disorder, self.phi, 
                    self.max_q, self.evals, self.evecs, self.lattice_type)
         
         return outputs
