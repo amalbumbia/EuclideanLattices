@@ -27,7 +27,6 @@ class Kagome_Hamiltonian:
         self.N = 3 * q  # Total number of sites (3 sites per magnetic unit cell)
         self.matrix = np.zeros((self.N, self.N), dtype=complex)
         self.lattice_type = "Kagome"
-        self.L = q
         self.save = save
 
         if self.save:
@@ -206,7 +205,7 @@ class Kagome_Hamiltonian:
         """
         self.evals, self.evecs = self.construct_hamiltonian()
         
-        outputs = (self.q, self.t, self.disorder, self.phi, 
+        outputs = (self.t, self.disorder, self.phi, 
                    self.max_q, self.evals, self.evecs, self.lattice_type)
         
         return outputs
