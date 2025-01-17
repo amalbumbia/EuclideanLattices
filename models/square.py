@@ -158,7 +158,7 @@ class Square_Hamiltonian:
         plt.title(title)
         plt.grid(True)
 
-    def prepare_outputs(self):
+    def prepare_outputs(self, p, q):
         """
         Package all relevant parameters and diagonalization 
         outputs in a tuple to pass onto independent plotting functions.
@@ -166,7 +166,7 @@ class Square_Hamiltonian:
         Returns:
             tuple: Parameter inputs for plotting functions.
         """
-        self.evals, self.evecs = self.construct_hamiltonian()
+        self.evals, self.evecs = self.construct_hamiltonian(p, q)
         
         outputs = (self.t, self.disorder, self.phi, 
                    self.max_q, self.evals, self.evecs, self.lattice_type)
