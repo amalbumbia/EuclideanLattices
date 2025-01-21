@@ -5,23 +5,52 @@ import os
 
 class Honeycomb_Hamiltonian:
     """Honeycomb lattice simulation with Anderson localization and a magnetic field."""
-
-    def __init__(self, t: float, W: float, phi: float, max_q: int, save = False):
+    def __init__(self, mode: str, t: float, W: float, max_q: int = None, L: int = None, p: int = 0, q: int = 0, save=False):
         """
         Initialize Honeycomb lattice.
-        
+
         Parameters:
-            t (float): Hopping parameter
-            W (float): Disorder strength
-            phi (float): Magnetic flux per plaquette (in units of flux quantum).
-            q (int): Maximum denominator for phi values in Hofstadter butterfly.
-            save (bool): If True, save plots to disk
+            mode (str): 'butterfly' for Hofstadter butterfly, 'specific' for modeling a specific system.
+            t (float): Hopping parameter.
+            W (float): Disorder strength.
+            max_q (int, optional): Maximum denominator for phi values in Hofstadter butterfly.
+            L (int, optional): Lattice size (L x L for the honeycomb lattice).
+            p (int, optional): Numerator of the flux fraction (specific mode).
+            q (int, optional): Denominator of the flux fraction (specific mode).
+            save (bool, optional): If True, save plots to disk.
         """
-        self.t = t
-        self.disorder = W
-        self.phi = phi
-        self.max_q = max_q
+        self.t = t  # Hopping parameter
+        self.disorder = W  # Disorder strength
         self.save = save
+        self.mode = mode.lower()
+
+        if self.mode == 'butterfly':
+            # Hofstadter butterfly mode
+            if max_q is None:
+                raise ValueError("max_q must be specified in 'butterfly' mode.")
+            self.max_q = max_q
+            self.L = 0  # Lattice size is determined by q for each flux calculation
+            self.p = 0
+            self.q = 0
+            self.phi = 0
+            self.N = 0
+
+        elif self.mode == 'specific':
+            # Specific system mode
+            if L is None:
+                raise ValueError("Lattice size (L) must be specified in 'specific' mode.")
+            self.L = L
+            self.N = 2 * (self.L*self.L)
+            self.max_q = None  # Not needed for a specific system
+            self.p = p
+            self.q = q
+            if self.p == 0 and self.q == 0:
+                self.phi = 0
+            else:
+                self.phi = self.p / self.q
+
+        else:
+            raise ValueError("Invalid mode. Choose 'butterfly' or 'specific'.")
         
         # Directory handling if saving
         self.lattice_type = 'Honeycomb'
@@ -52,7 +81,7 @@ class Honeycomb_Hamiltonian:
         else:
             plt.show()
 
-    #  Defining and diagonalizing the Hamiltonian for the system
+    """ Defining and diagonalizing the Hamiltonian for the system """
 
     def disorder_setter(self, N):
         # Incorporate the disorder parameter into matrix elements as an on-site disorder potential
@@ -75,7 +104,7 @@ class Honeycomb_Hamiltonian:
         phase = 2 * np.pi * self.phi * (x * delta_y)
         return np.exp(1j * phase)
 
-    def construct_hamiltonian(self, p, q):
+    def construct_hamiltonian(self, p_idx, q_idx):
         """
         Construct the Hamiltonian matrix with hopping,
         Peierls phases, and disorder.
@@ -84,16 +113,24 @@ class Honeycomb_Hamiltonian:
             evals (1D np.array): Eigenvalues of the Hamiltonian
             evecs (2D np.array): Corresponding eigenvectors
         """
-        L = q # Set the matrix dimension equal to q (denominator of phi)
-        N = 2 * (L * L) # Dimension of adjacency matrix
-        self.phi = p / q  # Flux per plaquette
+        if self.L == 0 :
+            L_dim = q_idx # Set the matrix dimension equal to q (denominator of phi)
+        else:
+            L_dim = self.L
+
+        N_dim = 2 * (L_dim * L_dim) # Dimension of adjacency matrix
+
+        if p_idx == 0 and q_idx == 0:
+            self.phi = 0
+        else:
+            self.phi = p_idx / q_idx
 
         # Initialize Hamiltonian
-        on_site_disorder = self.disorder_setter(N)
-        matrix = np.zeros((N, N), dtype=complex)
+        on_site_disorder = self.disorder_setter(N_dim)
+        matrix = np.zeros((N_dim, N_dim), dtype=complex)
 
-        for i, j in np.ndindex((L, L)):
-            n = i * L + j
+        for i, j in np.ndindex((L_dim, L_dim)):
+            n = i * L_dim + j
             A = 2 * n    # Sublattice A index
             B = A + 1    # Sublattice B index
 
@@ -107,16 +144,16 @@ class Honeycomb_Hamiltonian:
             matrix[B, A] = -self.t * np.conj(phase)
 
             # Horizontal hopping from A to B (delta_x = 1, delta_y = 0)
-            i_x = (i + 1) % L
-            n_x = i_x * L + j
+            i_x = (i + 1) % L_dim
+            n_x = i_x * L_dim + j
             B_x = 2 * n_x + 1
             phase = self.peierls_phase(1, 0, i, j)
             matrix[A, B_x] = -self.t * phase
             matrix[B_x, A] = -self.t * np.conj(phase)
 
             # Vertical hopping from A to B (delta_x = 0, delta_y = 1)
-            j_y = (j + 1) % L
-            n_y = i * L + j_y
+            j_y = (j + 1) % L_dim
+            n_y = i * L_dim + j_y
             B_y = 2 * n_y + 1
             phase = self.peierls_phase(0, 1, i, j)
             matrix[A, B_y] = -self.t * phase
@@ -135,7 +172,7 @@ class Honeycomb_Hamiltonian:
     def plot_hofstadter_butterfly(self, title=None, save=False):
         # Plotting Hofstadter butterfly
         if title is None:
-            title = rf'Hofstadter Butterfly for $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
+            title = rf'Hofstadter Butterfly for Honeycomb Lattice $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
             path = "Hofstadter_Butterfly"
 
         phis = []
@@ -155,8 +192,10 @@ class Honeycomb_Hamiltonian:
         plt.xlabel(r'Flux per plaquette $\phi = \frac{p}{q}$')
         plt.ylabel(r'Energy $E$')
         plt.title(title)
-        plt.grid(True)
+        plt.grid(False)
 
+        self.saving(path, save)
+        
     def prepare_outputs(self):
         """
         Package all relevant parameters and diagonalization 
@@ -165,9 +204,9 @@ class Honeycomb_Hamiltonian:
         Returns:
             tuple: Parameter inputs for plotting functions.
         """
-        self.evals, self.evecs = self.construct_hamiltonian()
+        self.evals, self.evecs = self.construct_hamiltonian(self.p, self.q)
         
-        outputs = (self.t, self.disorder, self.phi, 
-                   self.max_q, self.evals, self.evecs, self.lattice_type)
+        outputs = (self.t, self.disorder, self.p, self.q, 
+                   self.max_q, self.L, self.N, self.evals, self.evecs, self.lattice_type)
         
         return outputs
