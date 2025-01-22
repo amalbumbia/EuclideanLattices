@@ -4,8 +4,6 @@ This repository is a work in progress. My aim is to simulate Anderson localizati
  
 As it stands, the Thouless conductance and Chern number additions are still in progress. 
 
-There is an odd quirk in the butterflies due to an additional periodic smattering of points overlayed on top of the correct butterfly structure for each model. I believe it is due to the lattice size parameter being inconsistent with the magnetic flux denominator. The Kagome lattice model seems to produce a correct butterfly since I removed the problematic parameter from it. I will correct the rest in due time.
-
 # Getting Started
 
 To use the notebooks, ensure you have a `conda` environment with:
