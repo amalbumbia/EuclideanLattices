@@ -8,7 +8,7 @@ class Kagome_Hamiltonian:
     Kagome lattice simulation with Anderson localization and magnetic field.
     """
 
-    def __init__(self, t: float, W: float, phi: float, q: int, save = False):
+    def __init__(self, t: float, W: float, max_q: int = None, L: int = None, p: int = 0, q: int = 0, save=False):
         """
         Initialize Kagome_Hamiltonian class.
 
@@ -16,17 +16,24 @@ class Kagome_Hamiltonian:
             t (float): Hopping parameter.
             W (float): Disorder parameter.
             phi (float): Magnetic flux per plaquette (in units of flux quantum).
-            q (int): Denominator of the flux density (phi = p / q).
+            max_q (int): Denominator of the flux density (phi = p / q).
         """
         self.t = t  # Hopping parameter
         self.disorder = W  # Disorder strength
-        self.phi = phi  # Magnetic flux per unit cell
-        self.q = q  # Denominator of flux density
-        self.max_q = q
+
+        if p == 0 and q == 0:
+            self.phi = 0
+        else:
+            self.phi = p / q # Magnetic flux per unit cell
+
+        self.q = max_q  # Denominator of flux density
+        self.p = p
+        self.max_q = max_q
         self.period = 8  # Periodicity factor
-        self.N = 3 * q  # Total number of sites (3 sites per magnetic unit cell)
+        self.N = 3 * max_q  # Total number of sites (3 sites per magnetic unit cell)
         self.matrix = np.zeros((self.N, self.N), dtype=complex)
         self.lattice_type = "Kagome"
+        self.L = max_q
         self.save = save
 
         if self.save:
@@ -35,9 +42,9 @@ class Kagome_Hamiltonian:
             
             # Determine subdirectory based on disorder state
             if self.disorder == 0:
-                sub_dir = os.path.join(base_dir, 'No_Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}')
+                sub_dir = os.path.join(base_dir, 'No_Disorder', f't{self.t}_phi{self.phi}_q{self.max_q}')
             else:
-                sub_dir = os.path.join(base_dir, 'Disorder', f'L{self.L}_t{self.t}_phi{self.phi}_q{self.max_q}_dis{self.disorder}')
+                sub_dir = os.path.join(base_dir, 'Disorder', f't{self.t}_phi{self.phi}_q{self.max_q}_dis{self.disorder}')
             
             # Set the path and ensure the directory exists
             self.path = sub_dir
@@ -63,7 +70,7 @@ class Kagome_Hamiltonian:
         p = int(self.phi * self.q)  # Numerator of flux density
         q = self.q
         period = self.period
-        nphi = p / q
+        #nphi = p / q
         # m is a magnetic unit cell index
 
         # Define the block functions
@@ -166,13 +173,11 @@ class Kagome_Hamiltonian:
         # Compute eigenvalues and eigenvectors
         return self.evals, self.evecs
 
-    """Defining plotting functions dependent on matrix construction"""
-    
     def plot_hofstadter_butterfly(self, title = None, save = False):
-        # Plotting the Hofstadter butterfly
+
         if title == None:
-            title = 'Hofstadter Butterfly for $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
-            path = 'Hofstadter Butterfly'
+            title = rf'Hofstadter Butterfly for Kagome Lattice $\phi = p / '+ str(self.max_q) + '$ and $W = '+ str(self.disorder) + '$'
+            path = 'Hofstadter_Butterfly'
 
         # Plot Hofstadter butterfly
         plt.figure(figsize=(10, 8))
@@ -193,7 +198,7 @@ class Kagome_Hamiltonian:
         plt.scatter(phis, energies, s=0.1, color='black')
         plt.xlabel('Flux per Plaquette $\\phi = p/q$')
         plt.ylabel('Energy $E$')
-        plt.title(f'Hofstadter Butterfly for $\\phi = p / {self.max_q}$ and $W = {self.disorder}$')
+        plt.title(title)
         plt.grid(True)
         self.saving(path, save)
     
@@ -207,7 +212,7 @@ class Kagome_Hamiltonian:
         """
         self.evals, self.evecs = self.construct_hamiltonian()
         
-        outputs = (self.t, self.disorder, self.phi, 
-                   self.max_q, self.evals, self.evecs, self.lattice_type)
+        outputs = (self.t, self.disorder, self.p, self.q, 
+                   self.max_q, self.L, self.N, self.evals, self.evecs, self.lattice_type)
         
         return outputs

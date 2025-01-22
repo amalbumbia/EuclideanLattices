@@ -4,7 +4,7 @@ from math import gcd
 import os
 
 class Triangular_Hamiltonian:
-    """ Triangular lattice simulation with Anderson localization and magnetic field """
+    """ Triangular lattice simulation with Anderson localization and magnetic field. """
 
     def __init__(self, mode: str, t: float, W: float, max_q: int = None, L: int = None, p: int = 0, q: int = 0, save=False):
         """
