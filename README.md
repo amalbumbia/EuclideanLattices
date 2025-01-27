@@ -89,7 +89,7 @@ An interesting result discussed in the [literature](https://link.springer.com/ar
 
 Square butterfly with disorder:
 
-<img width="465" alt="square_disorder" src="">
+<img width="465" alt="square_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/fe499bf93b22a0505c5859149551be4cddeae258/plots/Square/Disorder/t1_maxq30_W0.7/Hofstadter_Butterfly.png">
 
 Triangular butterfly with disorder: 
 
