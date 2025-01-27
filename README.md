@@ -82,7 +82,7 @@ Kagome butterfly with no disorder:
 
 Triangular butterfly with no disorder:
 
-<img width="465" alt="kagome_no_disorder" src="">
+<img width="465" alt="kagome_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/0a44da460043d8c537fcc618b189345af5057e09/plots/Triangular/No_Disorder/t1_phi0_q30/Hofstadter_Butterfly.png">
 
 An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure.
 
