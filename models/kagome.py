@@ -199,7 +199,7 @@ class Kagome_Hamiltonian:
         plt.xlabel('Flux per Plaquette $\\phi = p/q$')
         plt.ylabel('Energy $E$')
         plt.title(title)
-        plt.grid(True)
+        plt.grid(False)
         self.saving(path, save)
     
     def prepare_outputs(self):
