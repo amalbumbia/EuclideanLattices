@@ -74,7 +74,7 @@ Square butterfly with no disorder:
 
 Honeycomb butterfly with no disorder:
 
-<img width="465" alt="honeycomb_no_disorder" src="">
+<img width="465" alt="honeycomb_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/926a290333d4d5be86dce31442ac0aacd070c898/plots/Honeycomb/No_Disorder/t1_phi0_maxq30/Hofstadter_Butterfly.png">
 
 Kagome butterfly with no disorder:
 
