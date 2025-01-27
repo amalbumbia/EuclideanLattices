@@ -70,8 +70,7 @@ An interesting result is that if we plot the energies as a function of magnetic 
 
 Square butterfly with no disorder:
 
-<img width="465" alt="square_no_disorder" src="">
-
+<img width="465" alt="square_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/5e534e064bba6abd516db0883ac352edf4f08079/plots/Square/No_Disorder/t1_maxq30/Hofstadter_Butterfly.png">
 
 Honeycomb butterfly with no disorder:
 
