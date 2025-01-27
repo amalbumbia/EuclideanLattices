@@ -78,7 +78,7 @@ Honeycomb butterfly with no disorder:
 
 Kagome butterfly with no disorder:
 
-<img width="465" alt="triangular_no_disorder" src="">
+<img width="465" alt="triangular_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/8df6d01938842c43777ce8bb8620cec55bd7094f/plots/Kagome/No_Disorder/t1_phi0_q50/Hofstadter_Butterfly.png">
 
 Triangular butterfly with no disorder:
 
