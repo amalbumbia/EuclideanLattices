@@ -97,7 +97,7 @@ Triangular butterfly with disorder:
 
 Honeycomb butterfly with disorder: 
 
-<img width="465" alt="honeycomb_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Honeycomb/Disorder/L10_t1_phi0.5_q50_dis0.5/Hofstadter%20Butterfly.png">
+<img width="465" alt="honeycomb_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/af0caf1f38f0abb36d851805c6c50f38dcb1e272/plots/Honeycomb/Disorder/t1_phi0_maxq30_W0.6/Hofstadter_Butterfly.png">
 
 Kagome butterfly with disorder: 
 
