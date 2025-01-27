@@ -75,7 +75,7 @@ class Triangular_Hamiltonian:
     
     def saving(self, title, save = False):
         
-        if self.save == True and save == True and title != None:
+        if self.save and save and title is not None:
             plt.savefig(os.path.join(self.path, title+'.png'))
             plt.show()
         else:
