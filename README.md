@@ -75,11 +75,11 @@ Square butterfly with no disorder:
 
 Honeycomb butterfly with no disorder:
 
-<img width="465" alt="honeycomb_no_disorder" src="https://github.com/user-attachments/assets/d7ef1d1c-087b-4b6c-ac2f-0d8ce98c7784">
+<img width="465" alt="honeycomb_no_disorder" src="">
 
 Kagome butterfly with no disorder:
 
-<img width="465" alt="triangular_no_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Kagome/No_Disorder/L50_t1_phi0.05_q50/Hofstadter%20Butterfly.png">
+<img width="465" alt="triangular_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/cf112478a23d0a5abdf5ac7cc9c64df5f51470e9/plots/Kagome/Disorder/t1_phi0_q50_dis0.6/Hofstadter_Butterfly.png">
 
 Triangular butterfly with no disorder:
 
