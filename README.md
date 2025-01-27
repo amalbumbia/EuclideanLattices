@@ -70,38 +70,37 @@ An interesting result is that if we plot the energies as a function of magnetic 
 
 Square butterfly with no disorder:
 
-<img width="465" alt="square_no_disorder" src="https://github.com/user-attachments/assets/9b55e5c7-d2b2-49eb-8d85-370bb2e4e94d">
-
+<img width="465" alt="square_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/5e534e064bba6abd516db0883ac352edf4f08079/plots/Square/No_Disorder/t1_maxq30/Hofstadter_Butterfly.png">
 
 Honeycomb butterfly with no disorder:
 
-<img width="465" alt="honeycomb_no_disorder" src="https://github.com/user-attachments/assets/d7ef1d1c-087b-4b6c-ac2f-0d8ce98c7784">
+<img width="465" alt="honeycomb_no_disorder" src="">
 
 Kagome butterfly with no disorder:
 
-<img width="465" alt="triangular_no_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Kagome/No_Disorder/L50_t1_phi0.05_q50/Hofstadter%20Butterfly.png">
+<img width="465" alt="triangular_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/8df6d01938842c43777ce8bb8620cec55bd7094f/plots/Kagome/No_Disorder/t1_phi0_q50/Hofstadter_Butterfly.png">
 
 Triangular butterfly with no disorder:
 
-<img width="465" alt="kagome_no_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Triangular/No_Disorder/L10_t1_phi0.0_q50/Hofstadter%20Butterfly.png">
+<img width="465" alt="kagome_no_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/0a44da460043d8c537fcc618b189345af5057e09/plots/Triangular/No_Disorder/t1_phi0_q30/Hofstadter_Butterfly.png">
 
 An interesting result discussed in the [literature](https://link.springer.com/article/10.1140/epjb/e2016-70593-4) is that the presence of disorder kills the butterfly structure.
 
 Square butterfly with disorder:
 
-<img width="465" alt="square_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Square/Disorder/L10_t1_phi0.0_q50_dis0.5/Hofstadter%20Butterfly.png">
+<img width="465" alt="square_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/fe499bf93b22a0505c5859149551be4cddeae258/plots/Square/Disorder/t1_maxq30_W0.7/Hofstadter_Butterfly.png">
 
 Triangular butterfly with disorder: 
 
-<img width="465" alt="triangular_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Triangular/Disorder/L10_t1_phi0.4_q50_dis0.7/Hofstadter%20Butterfly.png">
+<img width="465" alt="triangular_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/ccf0fe59be6c5d0eea88e2664d38b8d3785af874/plots/Triangular/Disorder/t1_phi0_q30_dis0.8/Hofstadter_Butterfly.png">
 
 Honeycomb butterfly with disorder: 
 
-<img width="465" alt="honeycomb_disorder" src="https://github.com/r-siddiqi/Hofstadter/blob/c4c7473830276793b6ca8c4c33dabcffac5b0aa7/plots/Honeycomb/Disorder/L10_t1_phi0.5_q50_dis0.5/Hofstadter%20Butterfly.png">
+<img width="465" alt="honeycomb_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/af0caf1f38f0abb36d851805c6c50f38dcb1e272/plots/Honeycomb/Disorder/t1_phi0_maxq30_W0.6/Hofstadter_Butterfly.png">
 
 Kagome butterfly with disorder: 
 
-<img width="465" alt="kagome_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/282ef5cea190e7a1fa79022a0b8dedfba70642f5/plots/Kagome/Disorder/L50_t1_phi0.0_q50_dis0.6/Hofstadter%20Butterfly.png">
+<img width="465" alt="kagome_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/cf112478a23d0a5abdf5ac7cc9c64df5f51470e9/plots/Kagome/Disorder/t1_phi0_q50_dis0.6/Hofstadter_Butterfly.png">
 
 **Basic Plots** - Square Lattice Example
 
