@@ -92,7 +92,7 @@ Square butterfly with disorder:
 
 Triangular butterfly with disorder: 
 
-<img width="465" alt="triangular_disorder" src="">
+<img width="465" alt="triangular_disorder" src="https://github.com/amalbumbia/EuclideanLattices/blob/ccf0fe59be6c5d0eea88e2664d38b8d3785af874/plots/Triangular/Disorder/t1_phi0_q30_dis0.8/Hofstadter_Butterfly.png">
 
 Honeycomb butterfly with disorder: 
 
