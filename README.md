@@ -1,8 +1,6 @@
 # Euclidean Lattice Simulations
 
-This repository is a work in progress. My aim is to simulate Anderson localization and the quantum hall effect on a few common euclidean lattices (square, honeycomb, triangular, kagome). A primary result is the Hofstadter butterfly for each of these lattice types given different input parameters such as the presence of an on-site disorder potential. 
- 
-As it stands, the Thouless conductance and Chern number additions are still in progress. 
+My aim is to simulate Anderson localization and the quantum hall effect on a few common euclidean lattices (square, honeycomb, triangular, kagome). A primary result is the Hofstadter butterfly for each of these lattice types given different input parameters such as the presence of an on-site disorder potential. 
 
 # Getting Started
 
@@ -55,12 +53,6 @@ $$IPR = \frac{(\sum_x |\psi(x)|^2)^2}{ \sum_x |\psi(x)|^4}$$
 ## Hofstadter Butterflies
 What happens when we apply a perpendicular, uniform magnetic field onto a lattice? The general tight-binding hamiltonian will now involve a "Peierls phase" accounting for the magnetic flux through each plaquette as well as relevant changes in the boundary conditions.
 An interesting result is that if we plot the energies as a function of magnetic flux ratios ($\phi = p/q$) such that $p$ and $q$ are coprime integers, we obtain a fractal pattern. It is a recursive structure. The way we constructed the butterfly involved choosing a maximum value for $q$, iterating through all the coprime $p$, $q$ pairs leading up to that point, and then reconstructing the hamiltonian for each consequent $\phi = p/q$. 
-
-## Thouless Conductance
-
-## Hall Conductance
-
-## Chern Number
 
 # Basic Usage
 
@@ -120,7 +112,7 @@ Kagome butterfly with disorder:
 
 <img width="465" alt="density_of_states" src="https://github.com/user-attachments/assets/6587e584-cb43-4ee6-b36e-20bd98e49c1a">
 
-Advanced Plots
+Illustrative Plots
 
 **Hall Conductance**
 
@@ -128,7 +120,7 @@ Advanced Plots
 
 # Credits and Acknowledgements
 
-Special thanks to Dr. Matteo Ippoliti for being my advisor and encouraging me to put everything on Github!
+Special thanks to Dr. Matteo Ippoliti for being my advisor and encouraging me to put everything on GitHub!
 
 A prior version of this repository is available here as my project for PHY 329 (Computational Physics) at UT Austin ([class website](https://www.wgilpin.com/cphy/)). Parts of the code and README are the same because I wrote both of them. Consider this repository an extension of my old work. I'd like to acknowledge my friends Rida Siddiqi and Maddox (Max) Wroblewski for their assistance and input towards the initial repository, as well as my friends Bishoy Kousa among others for their help and advice with troubleshooting. Max helped me learn how to use Github and also helped with some organization and saving plots into proper directories. 
 
