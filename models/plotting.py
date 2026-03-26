@@ -103,7 +103,7 @@ class Plotting_Functions:
         legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
         plt.plot(self.evals, self.PR, 'o')
         plt.xlabel('Energy $E$')
-        plt.ylabel('Inverse Participation Ratio (IPR)')
+        plt.ylabel('Participation Ratio (PR)')
         plt.title(title)
         plt.legend([legend])
         plt.grid(True)
