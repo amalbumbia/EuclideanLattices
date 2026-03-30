@@ -101,7 +101,7 @@ class Plotting_Functions:
         self.PR = 1./np.sum(np.abs(self.evecs)**4, axis=0) # 'evecs' is a matrix of $\psi_i(x)$ amplitudes, 1st axis is x. This does the sum over x.
 
         legend = f'L={self.L}, t={self.t}, W={self.disorder}, $\phi$={self.phi}'
-        plt.plot(self.evals, self.PR, color = "orange", marker = 'o', markersize = 8)
+        plt.scatter(self.evals, self.PR, color = "orange", marker = 'o', markersize = 8)
         plt.xlabel('Energy $E$')
         plt.ylabel('Participation Ratio (PR)')
         plt.title(title)
